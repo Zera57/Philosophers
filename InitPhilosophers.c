@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:31 by zera              #+#    #+#             */
-/*   Updated: 2021/10/17 12:25:32 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/17 14:23:28 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	initStats(t_stats *stats, t_args *args)
 {
 	stats->arg = args;
-	stats->is_dead = 0;
-	stats->is_finished = 0;
+	stats->isDead = 0;
+	stats->isFinished = 0;
 	gettimeofday(&stats->start_time, NULL);
 	stats->mutex_of_check_condition = malloc(sizeof(pthread_mutex_t));
 	stats->mutex_of_dead = malloc(sizeof(pthread_mutex_t));
@@ -33,6 +33,22 @@ int	initStats(t_stats *stats, t_args *args)
 	return (0);
 }
 
+int	createPhilo(t_philo **philo, t_stats *stats, int i)
+{
+	(*philo) = malloc(sizeof(t_philo));
+	if (!(*philo))
+		return (-1);
+	if (pthread_mutex_init(&(*philo)->mutex_of_fork, NULL))
+		return (-1);
+	(*philo)->id = i;
+	(*philo)->eating = 0;
+	(*philo)->cycle_is_start = 0;
+	(*philo)->countEat = 0;
+	(*philo)->stats = stats;
+	(*philo)->isDead = 0;
+	return (0);
+}
+
 int	initPhilo(t_philo **philo, t_stats *stats)
 {
 	int		i;
@@ -40,31 +56,18 @@ int	initPhilo(t_philo **philo, t_stats *stats)
 	t_philo	*temp;
 
 	i = -1;
+	if (createPhilo(philo, stats, ++i))
+		return (-1);
+	start = (*philo);
 	while (++i < stats->arg->numberOfPhilos)
 	{
-		temp = malloc(sizeof(t_philo));
-		if (!temp)
+		if (createPhilo(&temp, stats, i))
 			return (-1);
-		temp->id = i;
-		temp->eating = 0;
-		temp->cycle_is_start = 0;
-		temp->stats = stats;
-		if (pthread_mutex_init(&temp->mutex_of_fork, NULL))
-			return (-1);
-		if (*philo)
-		{
-			(*philo)->next = temp;
-			(*philo) = (*philo)->next;
-		}
-		else
-		{
-			(*philo) = temp;
-			start = (*philo);
-		}
+		(*philo)->next = temp;
+		(*philo) = (*philo)->next;
 	}
 	(*philo)->next = start;
 	(*philo) = start;
-	printf("Num of filos %d\n", i + 1);
 	return (0);
 }
 

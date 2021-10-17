@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:42 by zera              #+#    #+#             */
-/*   Updated: 2021/10/16 11:02:39 by zera             ###   ########.fr       */
+/*   Updated: 2021/10/17 13:57:59 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_args
 
 typedef struct s_stats
 {
-	int				is_dead;
-	volatile int	is_finished;
+	int				isDead;
+	int				isFinished;
 	t_args			*arg;
 	struct timeval	start_time;
 	pthread_mutex_t	*mutex_of_dead;
@@ -45,6 +45,8 @@ typedef struct s_philo
 	unsigned int	id;
 	unsigned int	eating;
 	int				cycle_is_start;
+	int				isDead;
+	long			countEat;
 	struct timeval	cycle_time;
 	pthread_t		thread_philo;
 	pthread_t		thread_watcher;
@@ -53,8 +55,10 @@ typedef struct s_philo
 	struct s_philo	*next;
 }					t_philo;
 
-
 int		parseArg(char **arg, t_args *args);
 int		initPhilos(char **arg, t_philo **philo, t_args *args, t_stats *stats);
+int		threadInit(t_philo *philo);
+void	*philoAction(void *arg);
+void	*philoActionWatcher(void *arg);
 
 #endif

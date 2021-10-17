@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:35 by zera              #+#    #+#             */
-/*   Updated: 2021/10/17 12:28:17 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/17 14:26:49 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	ft_atoi(const char *str)
 	{
 		tmp = result;
 		result = (result * 10) + *str - 48;
-		if (result < tmp)
-			return ((negative > 0) ? -1 : 0);
 		str++;
 	}
 	return (result * negative);
