@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:31 by zera              #+#    #+#             */
-/*   Updated: 2021/10/17 14:23:28 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 11:47:25 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	createPhilo(t_philo **philo, t_stats *stats, int i)
 	(*philo)->cycle_is_start = 0;
 	(*philo)->countEat = 0;
 	(*philo)->stats = stats;
-	(*philo)->isDead = 0;
 	return (0);
 }
 

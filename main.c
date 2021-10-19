@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 21:21:40 by zera              #+#    #+#             */
-/*   Updated: 2021/10/17 12:31:32 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:53:24 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int	main(int argc, char **argv)
 	philo = NULL;
 	if (initPhilos(argv, &philo, &args, &stats))
 		return (-1);
-	int i = 0;
-	while (i < stats.arg->numberOfPhilos)
-	{
-		printf("Philo id %d\n", philo->id);
-		philo = philo->next;
-		i++;
-	}
+	threadsInit(philo);
 	return (0);
 }

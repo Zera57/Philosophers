@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:42 by zera              #+#    #+#             */
-/*   Updated: 2021/10/17 13:57:59 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 11:46:57 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct s_philo
 	unsigned int	id;
 	unsigned int	eating;
 	int				cycle_is_start;
-	int				isDead;
 	long			countEat;
 	struct timeval	cycle_time;
 	pthread_t		thread_philo;
@@ -55,10 +54,20 @@ typedef struct s_philo
 	struct s_philo	*next;
 }					t_philo;
 
-int		parseArg(char **arg, t_args *args);
-int		initPhilos(char **arg, t_philo **philo, t_args *args, t_stats *stats);
-int		threadInit(t_philo *philo);
-void	*philoAction(void *arg);
-void	*philoActionWatcher(void *arg);
+int				parseArg(char **arg, t_args *args);
+int				initPhilos(char **arg, t_philo **philo,
+					t_args *args, t_stats *stats);
+void			*philoAction(void *arg);
+void			*philoActionWatcher(void *arg);
+unsigned long	ft_get_elapsed_time_ms(struct timeval *start_time);
+
+void			printDead(t_philo *philo);
+void			printEating(t_philo *philo);
+void			printSleeping(t_philo *philo);
+void			printThinking(t_philo *philo);
+void			printTakeFork(t_philo *philo);
+
+int				threadsInit(t_philo *philo);
+void			threadSleep(unsigned long time);
 
 #endif

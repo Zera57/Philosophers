@@ -6,15 +6,25 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:34:06 by hapryl            #+#    #+#             */
-/*   Updated: 2021/10/17 13:06:11 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:56:44 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int createThreads(t_philo *philo)
+void	threadSleep(unsigned long time)
 {
-	int i;
+	struct timeval	start_sleep;
+
+	time = time / 1000;
+	gettimeofday(&start_sleep, NULL);
+	while (ft_get_elapsed_time_ms(&start_sleep) < time)
+		usleep(10);
+}
+
+int	createThreads(t_philo *philo)
+{
+	int	i;
 
 	i = -1;
 	while (++i < philo->stats->arg->numberOfPhilos)
@@ -32,9 +42,9 @@ int createThreads(t_philo *philo)
 	return (0);
 }
 
-int	threadInit(t_philo *philo)
+int	threadsInit(t_philo *philo)
 {
-	int i;
+	int	i;
 
 	createThreads(philo);
 	i = -1;

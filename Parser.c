@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:35 by zera              #+#    #+#             */
-/*   Updated: 2021/10/17 14:26:49 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 11:53:23 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ int	ft_atoi(const char *str)
 	return (result * negative);
 }
 
+unsigned long	ft_get_elapsed_time_ms(struct timeval *start_time)
+{
+	struct timeval	present_time;
+	unsigned long	dst;
+
+	gettimeofday(&present_time, NULL);
+	dst = ((present_time.tv_sec * 1000) + (present_time.tv_usec / 1000))
+		- ((start_time->tv_sec * 1000) + (start_time->tv_usec / 1000));
+	return (dst);
+}
+
 int	checkArg(t_args *args)
 {
 	if (args->numberOfPhilos < 0 || args->timeToDie < 0
@@ -53,7 +64,7 @@ int	parseArg(char **arg, t_args *args)
 	args->timeToDie = ft_atoi(arg[2]);
 	args->timeToEat = ft_atoi(arg[3]);
 	args->timeToSleep = ft_atoi(arg[4]);
-	if (arg[5] != NULL)
+	if (arg[5])
 	{
 		args->num_of_eat = ft_atoi(arg[5]);
 		args->optional = 1;
