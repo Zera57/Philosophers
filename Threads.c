@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:34:06 by hapryl            #+#    #+#             */
-/*   Updated: 2021/10/19 12:56:44 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 22:48:56 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	threadsInit(t_philo *philo)
 {
 	int	i;
 
+	gettimeofday(&philo->stats->start_time, NULL);
 	createThreads(philo);
 	i = -1;
 	while (++i < philo->stats->arg->numberOfPhilos)

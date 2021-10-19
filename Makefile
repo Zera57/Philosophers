@@ -14,7 +14,7 @@ OFILE = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OFILE)
-	gcc -o $(NAME) $(OFILE)
+	gcc -o $(NAME) $(OFILE) -lpthread
 
 clean: 
 	rm -f $(OFILE)

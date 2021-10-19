@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:35 by zera              #+#    #+#             */
-/*   Updated: 2021/10/19 11:53:23 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 22:44:51 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_atoi(const char *str)
 {
 	int		negative;
 	long	result;
-	long	tmp;
 
 	result = 0;
 	negative = 1;
@@ -31,7 +30,6 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= 060 && *str <= 071)
 	{
-		tmp = result;
 		result = (result * 10) + *str - 48;
 		str++;
 	}

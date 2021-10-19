@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   InitPhilosophers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:31 by zera              #+#    #+#             */
-/*   Updated: 2021/10/19 11:47:25 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 22:52:04 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	initStats(t_stats *stats, t_args *args)
 	stats->arg = args;
 	stats->isDead = 0;
 	stats->isFinished = 0;
-	gettimeofday(&stats->start_time, NULL);
 	stats->mutex_of_check_condition = malloc(sizeof(pthread_mutex_t));
 	stats->mutex_of_dead = malloc(sizeof(pthread_mutex_t));
 	stats->mutex_of_message = malloc(sizeof(pthread_mutex_t));
