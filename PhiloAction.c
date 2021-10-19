@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhiloAction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:57:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/10/19 12:53:55 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/19 23:06:50 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ int	isOptPhiloDead(t_philo *philo)
 	pthread_mutex_unlock(philo->stats->mutex_of_check_condition);
 	return (!(philo->stats->isFinished == philo->stats->arg->numberOfPhilos)
 		 && !philo->stats->isDead);
+}
+
+void	*soloPhilo(t_philo *philo)
+{
+	printTakeFork(philo);
+	threadSleep(philo->stats->arg->timeToDie * 1000);
+	return (NULL);
 }
 
 int	philoEat(t_philo *philo)
@@ -63,6 +70,10 @@ void	*philoAction(void *arg)
 	philo = (t_philo *)arg;
 	gettimeofday(&philo->cycle_time, NULL);
 	philo->cycle_is_start = 1;
+	if (philo == philo->next)
+	{
+		return(soloPhilo(philo));
+	}
 	while ((!philo->stats->arg->optional && !philo->stats->isDead)
 		|| (philo->stats->arg->optional && isOptPhiloDead(philo)))
 	{
