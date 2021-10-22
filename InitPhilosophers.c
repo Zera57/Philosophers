@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   InitPhilosophers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:31 by zera              #+#    #+#             */
-/*   Updated: 2021/10/19 22:52:04 by zera             ###   ########.fr       */
+/*   Updated: 2021/10/22 16:29:28 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	createPhilo(t_philo **philo, t_stats *stats, int i)
 		return (-1);
 	if (pthread_mutex_init(&(*philo)->mutex_of_fork, NULL))
 		return (-1);
-	(*philo)->id = i;
+	(*philo)->id = i + 1;
 	(*philo)->eating = 0;
 	(*philo)->cycle_is_start = 0;
 	(*philo)->countEat = 0;
