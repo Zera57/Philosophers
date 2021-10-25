@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhiloAction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:57:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/10/19 23:06:50 by zera             ###   ########.fr       */
+/*   Updated: 2021/10/25 14:49:02 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	*philoAction(void *arg)
 	philo->cycle_is_start = 1;
 	if (philo == philo->next)
 	{
-		return(soloPhilo(philo));
+		return (soloPhilo(philo));
 	}
 	while ((!philo->stats->arg->optional && !philo->stats->isDead)
 		|| (philo->stats->arg->optional && isOptPhiloDead(philo)))
