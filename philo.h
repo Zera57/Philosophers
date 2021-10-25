@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 00:09:42 by zera              #+#    #+#             */
-/*   Updated: 2021/10/19 11:46:57 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/25 23:35:54 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				initPhilos(char **arg, t_philo **philo,
 					t_args *args, t_stats *stats);
 void			*philoAction(void *arg);
 void			*philoActionWatcher(void *arg);
+int				isOptPhiloDead(t_philo *philo);
 unsigned long	ft_get_elapsed_time_ms(struct timeval *start_time);
 
 void			printDead(t_philo *philo);

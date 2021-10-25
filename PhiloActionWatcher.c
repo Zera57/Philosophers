@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhiloActionWatcher.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 13:01:32 by hapryl            #+#    #+#             */
-/*   Updated: 2021/10/25 17:13:12 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/25 23:39:29 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	*philoActionWatcher(void *arg)
 		if (!philo->stats->isDead && philo->cycle_is_start
 			&& isPhiloStarving(philo))
 		{
-			if (!philo->stats->isDead)
+			if (!philo->stats->isDead && philo->stats->isFinished
+				!= philo->stats->arg->numberOfPhilos)
 				printDead(philo);
 			philo->stats->isDead = 1;
 			break ;
