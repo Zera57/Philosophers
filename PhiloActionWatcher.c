@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 13:01:32 by hapryl            #+#    #+#             */
-/*   Updated: 2021/10/19 13:14:57 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:13:12 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,20 @@ void	*philoActionWatcher(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo == philo->next)
+	{
+		threadSleep(((unsigned long) philo->stats->arg->timeToDie
+				- ft_get_elapsed_time_ms(&philo->cycle_time)) * 1000);
+		printDead(philo);
+		return (NULL);
+	}
 	while (1)
 	{
 		pthread_mutex_lock(philo->stats->mutex_of_dead);
 		if (!philo->stats->isDead && philo->cycle_is_start
 			&& isPhiloStarving(philo))
 		{
-			if (!philo->stats->isDead && !philo->stats->arg->optional)
+			if (!philo->stats->isDead)
 				printDead(philo);
 			philo->stats->isDead = 1;
 			break ;

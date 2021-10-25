@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:57:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/10/25 14:49:02 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/10/25 16:26:36 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	isOptPhiloDead(t_philo *philo)
 void	*soloPhilo(t_philo *philo)
 {
 	printTakeFork(philo);
+	gettimeofday(&philo->cycle_time, NULL);
 	threadSleep(philo->stats->arg->timeToDie * 1000);
 	return (NULL);
 }
